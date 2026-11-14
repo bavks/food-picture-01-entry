@@ -1,5 +1,7 @@
-// food-picture-01 entry: copies the food photograph (entry.png) into the
-// output directory. Node standard library only.
+// food-picture-01 entry (v2, "Midnight Tonkotsu" re-shot): copies the food
+// photograph (entry.png) into the output directory. Node standard library
+// only. The v2 photograph is a closer, glossier hero shot of the same
+// tonkotsu ramen: taller noodle pull, runnier jammy yolk, more steam.
 import { copyFileSync, existsSync, mkdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -25,5 +27,7 @@ if (!existsSync(source)) {
   throw new Error(`entry image not found: ${source}`);
 }
 
+// Copy the photograph byte-for-byte; the output must be named entry.png
+// regardless of the source file's format (the v2 shot is JPEG bytes).
 mkdirSync(outDir, { recursive: true });
 copyFileSync(source, resolve(outDir, "entry.png"));
